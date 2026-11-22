@@ -1,6 +1,5 @@
 package sn.supper;
 import java.util.Scanner;
-import sn.supper.domain.Projet;
 import sn.supper.service.IProjetService;
 import sn.supper.service.ProjetServiceImpl;
 import sn.supper.repository.IProjetRepository;
@@ -10,6 +9,7 @@ import sn.supper.datasource.InMemoryDatasource;
 import java.util.Optional;
 import java.util.List;
 import sn.supper.Dto.ProjetCreateDto;
+import sn.supper.Dto.ProjetReadDto;
 
 
 public class Main {
@@ -42,7 +42,7 @@ public class Main {
                     {
                         System.out.print("Code : ");
                         String code = scanner.nextLine().trim();
-                        Optional<Projet> projet = ps.getProjet(code);
+                        Optional<ProjetReadDto> projet = ps.getProjet(code);
                         if (projet.isPresent()) {
                             System.out.println("===================");
                             afficherProjet(projet.get());
@@ -57,7 +57,7 @@ public class Main {
                     {
                         System.out.println("Liste des projets :");
                         System.out.println("===================");
-                        for (Projet projet : ps.getAllProjets()) {
+                        for (ProjetReadDto projet : ps.getAllProjets()) {
                             afficherProjet(projet);
                             System.out.println("-------------------");
                         }
@@ -70,10 +70,10 @@ public class Main {
         } while (choix !=  "0");
     }
 
-    private static void afficherProjet(Projet projet) {
-        System.out.println("Code : " + projet.getCode());
-        System.out.println("Nom : " + projet.getNom());
-        System.out.println("Description : " + projet.getDescription());
+    private static void afficherProjet(ProjetReadDto projet) {
+        System.out.println("Code : " + projet.code());
+        System.out.println("Nom : " + projet.nom());
+        System.out.println("Description : " + projet.description());
     }
 
     private static String menu(){

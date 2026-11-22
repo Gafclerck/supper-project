@@ -5,6 +5,7 @@ import sn.supper.repository.IProjetRepository;
 import java.util.Optional;
 import java.util.List;
 import sn.supper.Dto.ProjetCreateDto;
+import sn.supper.Dto.ProjetReadDto;
 
 
 public class ProjetServiceImpl implements IProjetService {
@@ -18,13 +19,13 @@ public class ProjetServiceImpl implements IProjetService {
         this.repository.add(projet);
     };
     // recuperer un projet
-    public Optional<Projet> getProjet(String code) {
+    public Optional<ProjetReadDto> getProjet(String code) {
         return this.repository.getProjetByCode(code);
     }
 
     // Voir un projet
     // Lister les projets
-     public List<Projet> getAllProjets(){
+     public List<ProjetReadDto> getAllProjets(){
         return this.repository.selectAllProjets();
      };
 }
