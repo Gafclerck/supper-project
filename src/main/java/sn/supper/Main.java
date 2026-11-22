@@ -1,26 +1,27 @@
 package sn.supper;
 import java.util.Scanner;
-import sn.supper.service.IProjetService;
-import sn.supper.service.ProjetServiceImpl;
-import sn.supper.repository.IProjetRepository;
-import sn.supper.repository.ProjetRepositoryImpl;
-import sn.supper.datasource.Database;
-import sn.supper.datasource.InMemoryDatasource;
 import java.util.Optional;
 import java.util.List;
 import sn.supper.Dto.ProjetCreateDto;
 import sn.supper.Dto.ProjetReadDto;
-
+import sn.supper.Factory.RepositoryFactory;
+import sn.supper.Factory.ServiceFactory;
+import sn.supper.Factory.DatabaseFactory;
 
 public class Main {
-    
+    // dynamic a = 2;
+    // a  = 3.0;
+
+    // var a = getA();
+    // a = 3.0;
     static Scanner scanner = new Scanner(System.in);
     
-
     public static void main(String[] args) {
-        Database database = new InMemoryDatasource();
-        IProjetRepository repository = new ProjetRepositoryImpl(database);
-        IProjetService ps = new ProjetServiceImpl(repository);
+        var ps = ServiceFactory.createProjetService(
+             RepositoryFactory.createProjetRepository(
+                DatabaseFactory.createDatabase();
+             )
+        );
         String choix;
         do {
             choix = menu();

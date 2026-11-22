@@ -6,6 +6,17 @@ import java.util.List;
 import java.util.Optional;
 
 public class InMemoryDatasource implements Database {
+
+    private static InMemoryDatasource instance;
+    private InMemoryDatasource() {
+    }
+
+    public static InMemoryDatasource getInstance() {
+        if (instance == null) {
+            instance = new InMemoryDatasource();
+        }
+        return instance;
+    }
     // Ajouter un projet
     List<Projet> projets = new ArrayList<>();
     public void insert(Projet projet) {
