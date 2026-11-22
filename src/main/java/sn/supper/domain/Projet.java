@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @Setter
 public class Projet {
+    private String code;
     private String nom;
     private String description;
 }
